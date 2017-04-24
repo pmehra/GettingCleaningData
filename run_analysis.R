@@ -175,7 +175,7 @@ GSdataSet <- rbind.data.frame(GStrgSetData,GStstSetData)
 #
 # Output the tidy data
 #
-write.table(GSdataSet, file = "Tidy dataset 1.txt")
+write.table(GSdataSet, file = "Tidy dataset 1.txt", row.name=FALSE)
 #
 ## Create and output a second data set that summarizes mean observations by subject and activity class
 #
@@ -183,7 +183,7 @@ write.table(GSdataSet, file = "Tidy dataset 1.txt")
 # GSdataSet %>% melt(id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F) %>%
 # dcast(c(subjectId, activityClass) ~ variable, mean) %>% GSdataSet2
 GSdataSet2 <- (GSdataSet %>% melt(id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F) %>% dcast(c(subjectId, activityClass) ~ variable, mean))
-write.table(GSdataSet2, file = "Tidy dataset 2.txt")
+write.table(GSdataSet2, file = "Tidy dataset 2.txt", row.name=FALSE)
 
 #GSdataSet2 <- melt(GSdataSet, id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F)
 #dcast(GSdataSet2, c(subjectId, activityClass) ~ variable, mean)

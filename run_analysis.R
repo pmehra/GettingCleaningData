@@ -1,8 +1,5 @@
 library(dplyr)
 library(tidyr)
-library("tidyr")
-library("reshape2")
-library("plyr")
 
 ##
 # Get the data file

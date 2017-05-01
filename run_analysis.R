@@ -182,8 +182,11 @@ write.table(GSdataSet, file = "Tidy dataset 1.txt", row.name=FALSE)
 # gather(GSdataSet, subject_activity, subjectId, activityClass, -GSsubset)
 # GSdataSet %>% melt(id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F) %>%
 # dcast(c(subjectId, activityClass) ~ variable, mean) %>% GSdataSet2
-GSdataSet2 <- (GSdataSet %>% melt(id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F) %>% dcast(c(subjectId, activityClass) ~ variable, mean))
-write.table(GSdataSet2, file = "Tidy dataset 2.txt", row.name=FALSE)
-
+# GSdataSet2 <- (GSdataSet %>% melt(id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F) %>% dcast(c(subjectId, activityClass) ~ variable, mean))
 #GSdataSet2 <- melt(GSdataSet, id.vars = c("subjectId", "activityClass", "GSsubset"), factorsAsStrings=F)
 #dcast(GSdataSet2, c(subjectId, activityClass) ~ variable, mean)
+#
+## Leave out the training versus test annotation in final column, and summarize rest
+#
+GSdataSet2 <- GSdataSet[,1:68] %>% group_by(subjectId,activityClass) %>% summarize_each(funs(mean))
+write.table(GSdataSet2, file = "Tidy dataset 2.txt", row.name=FALSE)
